@@ -5,9 +5,6 @@ parameters:
   type: string
   default: 'tfstate'
 
-pool:
-  vmImage: 'ubuntu-latest'
-
 - task: TerraformTaskV3@3
   displayName: Initialize Terraform
   inputs:
