@@ -6,13 +6,13 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-  - bash: |
-      ls -la '$(Build.SourcesDirectory)/.infrastructure/acr'
+# steps:
+#   - bash: |
+#       ls -la '$(Build.SourcesDirectory)/.infrastructure/acr'
 
 
-# extends:
-#   template: templates/terraform.yml
-#   parameters:
-#     configDirectory: '$(Build.SourcesDirectory)/.infrastructure/acr'
-#     stateContainerName: 'hellogoacr'
+extends:
+  template: templates/terraform.yml
+  parameters:
+    configDirectory: '$(Build.SourcesDirectory)/.infrastructure/acr'
+    stateContainerName: 'hellogoacr'

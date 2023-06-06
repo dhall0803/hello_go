@@ -6,12 +6,12 @@ parameters:
     type: string
     default: tfstate
 steps:
-  - bash: |
-      ls -la $(Build.SourcesDirectory)/.infrastructure/acr
-      ls -la $DIR_TO_CHECK:
-    displayName: (Debug) List files in config directory
-    env:
-      DIR_TO_CHECK: ${{ parameters.configDirectory }}
+  # - bash: |
+  #     ls -la $(Build.SourcesDirectory)/.infrastructure/acr
+  #     ls -la $DIR_TO_CHECK:
+  #   displayName: (Debug) List files in config directory
+  #   env:
+  #     DIR_TO_CHECK: ${{ parameters.configDirectory }}
   - task: TerraformTaskV3@3
     displayName: Initialize Terraform
     inputs:
