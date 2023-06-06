@@ -27,10 +27,10 @@ steps:
     name: terraformPlan
     displayName: Create Terraform Plan
     inputs:
-      workingDirectory: ${{ parameters.stateContainerName }}
+      workingDirectory: ${{ parameters.configDirectory }}
       provider: azurerm
       command: plan
-      commandOptions: -out ${{ parameters.stateContainerName }}/main.tfplan
+      commandOptions: -out ${{ parameters.configDirectory }}/main.tfplan
       environmentServiceNameAzureRM: Learning(c1d8bd99-50c3-40a0-8445-072261c3a247)
   - task: TerraformTaskV3@3
     displayName: Apply Terraform Plan
@@ -39,5 +39,5 @@ steps:
       workingDirectory: ${{ parameters.configDirectory }}
       provider: azurerm
       command: apply
-      commandOptions: ${{ parameters.stateContainerName }}/main.tfplan
+      commandOptions: ${{ parameters.configDirectory}}/main.tfplan
       environmentServiceNameAzureRM: Learning(c1d8bd99-50c3-40a0-8445-072261c3a247)
