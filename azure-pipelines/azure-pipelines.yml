@@ -1,0 +1,13 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+extends:
+  template: azure-pipelines/terraform.yml
+  parameters:
+    configDirectory: '.infrastucture/acr'
+    stateContainerName: 'hellogoacr'
