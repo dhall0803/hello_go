@@ -6,6 +6,9 @@ parameters:
     type: string
     default: tfstate
 steps:
+  - script: |
+    ls -la $(parameters.configDirectory)
+    name: (Debug) List files in config directory
   - task: TerraformTaskV3@3
     displayName: Initialize Terraform
     inputs:
