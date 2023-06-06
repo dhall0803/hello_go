@@ -8,9 +8,11 @@ pool:
 
 steps:
   - bash: |
-      ls -la $(Build.SourcesDirectory)/.infrastructure/acr
-extends:
-  template: templates/terraform.yml
-  parameters:
-    configDirectory: '$(Build.SourcesDirectory)/.infrastructure/acr'
-    stateContainerName: 'hellogoacr'
+      ls -la '$(Build.SourcesDirectory)/.infrastructure/acr'
+
+
+# extends:
+#   template: templates/terraform.yml
+#   parameters:
+#     configDirectory: '$(Build.SourcesDirectory)/.infrastructure/acr'
+#     stateContainerName: 'hellogoacr'
