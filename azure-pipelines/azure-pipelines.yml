@@ -12,5 +12,4 @@ steps:
     parameters:
       configDirectory: $(Build.SourcesDirectory)/.infrastructure/acr
       stateContainerName: 'hellogoacr'
-    displayName: 'Deploy ACR'
 
