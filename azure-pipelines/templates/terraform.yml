@@ -11,7 +11,7 @@ steps:
     inputs:
       provider: azurerm
       command: init
-      configDirectory: $(parameters.configDirectory)
+      workingDirectory: $(parameters.configDirectory)
       backendServiceArm: Learning(c1d8bd99-50c3-40a0-8445-072261c3a247)
       backendAzureRmResourceGroupName: rg-tfstate
       backendAzureRmStorageAccountName: sttfstatedh
@@ -21,7 +21,7 @@ steps:
     name: terraformPlan
     displayName: Create Terraform Plan
     inputs:
-      configDirectory: $(parameters.configDirectory)
+      workingDirectory: $(parameters.configDirectory)
       provider: azurerm
       command: plan
       commandOptions: -out $(parameters.configDirectory)/main.tfplan
@@ -30,7 +30,7 @@ steps:
     displayName: Apply Terraform Plan
     condition: eq(variables['terraformPlan.changesPresent'], 'true')
     inputs:
-      configDirectory: $(parameters.configDirectory)
+      workingDirectory: $(parameters.configDirectory)
       provider: azurerm
       command: apply
       commandOptions: $(parameters.configDirectory)/main.tfplan
