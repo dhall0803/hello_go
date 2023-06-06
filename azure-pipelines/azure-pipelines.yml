@@ -7,7 +7,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 extends:
-  template: azure-pipelines/terraform.yml
+  template: templates/terraform.yml
   parameters:
     configDirectory: '.infrastucture/acr'
     stateContainerName: 'hellogoacr'
