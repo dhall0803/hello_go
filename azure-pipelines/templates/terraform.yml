@@ -11,6 +11,7 @@ steps:
     inputs:
       provider: azurerm
       command: init
+      configDirectory: $(parameters.configDirectory)
       backendServiceArm: Learning(c1d8bd99-50c3-40a0-8445-072261c3a247)
       backendAzureRmResourceGroupName: rg-tfstate
       backendAzureRmStorageAccountName: sttfstatedh

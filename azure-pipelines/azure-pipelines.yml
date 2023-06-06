@@ -9,5 +9,5 @@ pool:
 extends:
   template: templates/terraform.yml
   parameters:
-    configDirectory: '../.infrastucture/acr'
+    configDirectory: '../.infrastructure/acr/'
     stateContainerName: 'hellogoacr'
