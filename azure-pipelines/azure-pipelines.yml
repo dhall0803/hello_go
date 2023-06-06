@@ -14,5 +14,5 @@ pool:
 extends:
   template: templates/terraform.yml
   parameters:
-    configDirectory: '$(Build.SourcesDirectory)/.infrastructure/acr'
+    configDirectory: $(Build.SourcesDirectory)/.infrastructure/acr
     stateContainerName: 'hellogoacr'
