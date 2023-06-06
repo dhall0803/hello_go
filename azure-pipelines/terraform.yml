@@ -1,0 +1,38 @@
+parameters:
+- name: configDirectory
+  type: string
+- name: stateContainerName
+  type: string
+  default: 'tfstate'
+
+- task: TerraformTaskV3@3
+  displayName: Initialize Terraform
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'Learning(c1d8bd99-50c3-40a0-8445-072261c3a247)'
+    backendAzureRmResourceGroupName: 'rg-tfstate'
+    backendAzureRmStorageAccountName: 'sttfstatedh'
+    backendAzureRmContainerName: '$(parameters.stateContainerName)'
+    backendAzureRmKey: 'state.tfstate'
+
+- task: TerraformTaskV3@3
+  name: terraformPlan
+  displayName: Create Terraform Plan
+  inputs:
+    configDirectory: '$(parameters.configDirectory)'
+    provider: 'azurerm'
+    command: 'plan'
+    commandOptions: '-out $(parameters.configDirectory)/main.tfplan'
+    environmentServiceNameAzureRM: 'Learning(c1d8bd99-50c3-40a0-8445-072261c3a247)
+
+# Only runs if the 'terraformPlan' task has detected changes the in state. 
+- task: TerraformTaskV3@3
+  displayName: Apply Terraform Plan
+  condition: eq(variables['terraformPlan.changesPresent'], 'true')
+  inputs:
+    configDirectory: '$(parameters.configDirectory)'
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: '$(parameters.configDirectory)/main.tfplan'
+    environmentServiceNameAzureRM: 'Learning(c1d8bd99-50c3-40a0-8445-072261c3a247)'
